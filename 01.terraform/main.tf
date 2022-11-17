@@ -107,7 +107,7 @@ resource "aws_autoscaling_group" "abel_scaling_group" {
 }
 
 resource "aws_lb" "abel_load_balancer" {
-  name                             = "aa-nlb"
+  name                             = "abel-nlb"
   internal                         = false
   load_balancer_type               = "network"
   enable_cross_zone_load_balancing = true
@@ -125,7 +125,7 @@ resource "aws_lb_listener" "abel_frontend" {
 }
 
 resource "aws_lb_target_group" "abel_pool" {
-  name     = "web-services"
+  name     = "abel-web-services"
   port     = 80
   protocol = "TCP"
   vpc_id   = aws_vpc.abel_vpc.id
