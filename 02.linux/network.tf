@@ -24,3 +24,17 @@ resource "aws_subnet" "abel_private_subnet_1a" {
 #    Name = "abel-private-1b"
 #  }
 #}
+
+resource "aws_internet_gateway" "abel_igw" {
+  vpc_id = aws_vpc.abel_linux_vpc.id
+
+  tags = {
+    Name = "abel_vpc-igw"
+  }
+}
+
+resource "aws_route" "abel_route" {
+  route_table_id         = aws_vpc.abel_linux_vpc.main_route_table_id
+  destination_cidr_block = "0.0.0.0/0"
+  gateway_id             = aws_internet_gateway.abel_igw.id
+}

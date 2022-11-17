@@ -30,7 +30,7 @@ resource "aws_instance" "abel_linux" {
   vpc_security_group_ids      = [aws_security_group.abel-linux-sg.id]
   associate_public_ip_address = true
   key_name                    = aws_key_pair.abel_key_pair.key_name
-  //user_data                   = file("aws-user-data.sh")
+  user_data                   = file("aws-user-data.sh")
 
   tags = {
     Name = "abel-linux"
