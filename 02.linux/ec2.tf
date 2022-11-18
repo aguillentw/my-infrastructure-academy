@@ -32,6 +32,39 @@ resource "aws_instance" "abel_linux" {
   key_name                    = aws_key_pair.abel_key_pair.key_name
   user_data                   = file("aws-user-data.sh")
 
+  # root disk
+  root_block_device {
+    volume_size           = "10"
+    volume_type           = "gp3"
+    delete_on_termination = true
+    encrypted             = true
+  }
+
+  # extra disk
+  ebs_block_device {
+    device_name           = "/dev/xvda"
+    volume_size           = "10"
+    volume_type           = "gp3"
+    encrypted             = true
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/xvdb"
+    volume_size           = "10"
+    volume_type           = "gp3"
+    encrypted             = true
+    delete_on_termination = true
+  }
+
+  ebs_block_device {
+    device_name           = "/dev/xvdc"
+    volume_size           = "10"
+    volume_type           = "gp3"
+    encrypted             = true
+    delete_on_termination = true
+  }
+
   tags = {
     Name = "abel-linux"
   }
